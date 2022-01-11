@@ -28,13 +28,14 @@
 # 開始實作
 * 硬體  
 依實際錢幣大小割下虛線  
-加圖片  
+![投影片1](https://user-images.githubusercontent.com/97165881/148979248-359c8494-e630-4631-9c73-0ee84ed335b2.JPG)  
 實驗適當斜度後可以熱熔膠黏貼在瓦楞板上，並切割寶特瓶當錢幣容器  
-加圖片  
+![投影片2](https://user-images.githubusercontent.com/97165881/148979288-d69f7f63-d673-4121-be20-1c6fd955ee68.JPG)
 用另外一片瓦楞板，將4顆PIR sensor、RasbperryPi、breadboard都用熱溶膠貼在上面，並以杜邦線完成接線  
-加圖片  
+![投影片3](https://user-images.githubusercontent.com/97165881/148979321-838b8d64-c13b-4988-a437-929303ff7637.JPG) 
 這次選用的GPIO說明如下  
-加圖片  
+![投影片4](https://user-images.githubusercontent.com/97165881/148979383-3fd8a75c-64b9-4fac-9f56-41951cc8e28e.JPG)
+
 * 軟體
 在Rasbperry Pi 3安裝RasbperryPi os，安裝步驟可以參考以下網站  
 https://www.raspberrypi.org/documentation/computers/using_linux.html#creating-a-new-user  
@@ -43,11 +44,54 @@ https://www.raspberrypi.org/documentation/computers/using_linux.html#creating-a-
 前置作業都完成了之後，我們就要來寫程式囉!  
 第一支程式是要將接收感應器傳回來的值，並且加總所有金額，我將這隻程式存檔為coinbankwihPIR.py  
 ```python
-gpio.board(15)
+import RPi.GPIO as GPIO
+from time import procese_time
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(13, GPIO.IN)         #Read output from PIR motion sensor for$1
+GPIO.setup(15, GPIO.IN)         #Read output from PIR motion sensor for$5
+GPIO.setup(16, GPIO.IN)         #Read output from PIR motion sensor for$10
+GPIO.setup(18, GPIO.IN)         #Read output from PIR motion sensor for$50
+def coinbank():
+    count1 = 0
+    count5 = 0
+    count10 = 0
+    count50 = 0
+    while True:
+     a=GPIO.input(13)
+     b=GPIO.input(15)
+     c=GPIO.input(16)
+     d=GPIO.input(18)
+     if a==1:                 
+      count1 += a
+      print("$1")
+     if b==1:               
+      count5 += 1
+      print("$5")
+     if c==1:               
+      count10 += 1
+      print("$10")
+     if d==1:               
+      count50 += 1
+      print("$50")
+     if process_time() > 0.1:
+         break
+    total = count1*1+count5*5+count10*10+count50*50
+    return "tatol : &",str(total)
 ```  
 第二支程式是使用flask將我們加總的結果以網頁呈現，我將這隻程式存檔為app.py  
 ```python
-gpio.board(15)
+from flask import Flask
+from coinbankwithPIR import coinbank
+
+
+app = Flask(__name__)
+
+@app.route("/coinbank")
+def home():
+    return coinbank()
+
+app.run()
 ```    
 # 實作影片
 來自受零用錢鼓舞的孩童
