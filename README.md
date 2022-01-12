@@ -30,7 +30,7 @@
 依實際錢幣大小割下虛線  
 ![投影片1](https://user-images.githubusercontent.com/97165881/148979248-359c8494-e630-4631-9c73-0ee84ed335b2.JPG)  
 實驗適當斜度後可以熱熔膠黏貼在瓦楞板上，並切割寶特瓶當錢幣容器  
-![投影片2](https://user-images.githubusercontent.com/97165881/148979288-d69f7f63-d673-4121-be20-1c6fd955ee68.JPG)
+![投影片2](https://user-images.githubusercontent.com/97165881/149172644-7e9adf9c-ff32-49f6-b8a8-312d950535a7.PNG)  
 用另外一片瓦楞板，將4顆PIR sensor、RasbperryPi、breadboard都用熱溶膠貼在上面，並以杜邦線完成接線  
 ![投影片3](https://user-images.githubusercontent.com/97165881/148979321-838b8d64-c13b-4988-a437-929303ff7637.JPG) 
 這次選用的GPIO說明如下  
@@ -39,8 +39,8 @@
 * 軟體
 在Rasbperry Pi 3安裝RasbperryPi os，安裝步驟可以參考以下網站  
 https://www.raspberrypi.org/documentation/computers/using_linux.html#creating-a-new-user  
-接下來就在終端機先安裝python的flask套件  
-```$ pip install Flask```  
+接下來就在terminal先安裝python的flask套件  
+`$ pip install Flask`  
 前置作業都完成了之後，我們就要來寫程式囉!  
 第一支程式是要將接收感應器傳回來的值，並且加總所有金額，我將這隻程式存檔為coinbankwihPIR.py  
 ```python
@@ -93,6 +93,25 @@ def home():
 
 app.run()
 ```    
+網頁成功之後，只能在本機使用，那我們就要利用ngrok這個資源來讓外部電腦也可以連上我們剛剛設置好的網頁  
+第一步先開啟raspberryPi 的terminal輸入:  
+`sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip`  
+接著將檔案解壓縮，一樣在terminal輸入:  
+`sudo unzip ngrok-stable-linux-arm.zip`  
+接著就到ngrok的網站註冊及取得token  
+https://dashboard.ngrok.com/login  
+註冊完成後點選左側的 Your Authtoken然後複製Command Line的內容一樣貼在terminal執行  　
+![image](https://user-images.githubusercontent.com/97165881/149170045-25ff32cf-e3de-4510-a9cb-fc311df059bf.png)  
+然後出現Autotoken saved這行字就表示成功囉!  
+![image](https://user-images.githubusercontent.com/97165881/149169855-3498c3e9-cf91-4a64-a2a2-3ccbbf407b66.png)  
+繼續在terminal下指令    
+`./ngrok http+port`例如我的是localhost:5000，我就要下`./ngrok http 5000`  
+成功之後就會長這樣  
+![image](https://user-images.githubusercontent.com/97165881/149170552-dfeaf581-250f-4b85-a5d8-e3895a00e45a.png)  
+那我在外部網路要輸入的就是  
+http://b65b-106-104-88-155.ngrok.io/coinbank  
+這樣就大功告成啦!  
+
 # 實作影片
 希望奇蹟出現
 # 參考資料
@@ -100,3 +119,4 @@ https://www.youtube.com/watch?v=ItbHdrFvzlg
 https://www.tinkercad.com/  
 https://hackmd.io/@shaoeChen/SyP4YEnef?type=view  
 https://www.raspberrypi.org/  
+https://learningsky.io/access-raspberry-pi-from-outside-network/  
