@@ -45,25 +45,27 @@ https://www.raspberrypi.org/documentation/computers/using_linux.html#creating-a-
 第一支程式是要將接收感應器傳回來的值，並且加總所有金額，我將這隻程式存檔為coinbankwihPIR.py  
 ```python
 import RPi.GPIO as GPIO
-from time import procese_time
+import time
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(13, GPIO.IN)         #Read output from PIR motion sensor for$1
-GPIO.setup(15, GPIO.IN)         #Read output from PIR motion sensor for$5
-GPIO.setup(16, GPIO.IN)         #Read output from PIR motion sensor for$10
-GPIO.setup(18, GPIO.IN)         #Read output from PIR motion sensor for$50
+GPIO.setup(13, GPIO.IN)         #Read output from PIR motion sensor for$50 is G
+GPIO.setup(15, GPIO.IN)         #Read output from PIR motion sensor for$10 is W
+GPIO.setup(16, GPIO.IN)         #Read output from PIR motion sensor for$5 is B
+GPIO.setup(18, GPIO.IN)         #Read output from PIR motion sensor for$1 is O
 def coinbank():
     count1 = 0
     count5 = 0
     count10 = 0
     count50 = 0
+    start=time.time()
     while True:
-     a=GPIO.input(13)
-     b=GPIO.input(15)
-     c=GPIO.input(16)
-     d=GPIO.input(18)
+     a=GPIO.input(18)
+     b=GPIO.input(16)
+     c=GPIO.input(15)
+     d=GPIO.input(13)
      if a==1:                 
-      count1 += a
+      count1 += 1
       print("$1")
      if b==1:               
       count5 += 1
@@ -74,10 +76,12 @@ def coinbank():
      if d==1:               
       count50 += 1
       print("$50")
-     if process_time() > 0.1:
+     time.sleep(0.5)
+     end=time.time()
+     if end-start > 20:
          break
-    total = count1*1+count5*5+count10*10+count50*50
-    return "tatol : &",str(total)
+    total = count1*1 + count5*5 + count10*10 + count50*50
+    return "your coinbank total is :" + str(total)
 ```  
 第二支程式是使用flask將我們加總的結果以網頁呈現，我將這隻程式存檔為app.py  
 ```python
