@@ -28,9 +28,9 @@
 # 開始實作
 * 硬體  
 依實際錢幣大小割下虛線  
-![投影片1](https://user-images.githubusercontent.com/97165881/148979248-359c8494-e630-4631-9c73-0ee84ed335b2.JPG)  
+ ![投影片1](https://user-images.githubusercontent.com/97165881/149562967-65c1a9e6-5ef0-4b3b-968a-94ec9d75fdf5.PNG) 
 實驗適當斜度後可以熱熔膠黏貼在瓦楞板上，並切割寶特瓶當錢幣容器  
-![投影片2](https://user-images.githubusercontent.com/97165881/149172644-7e9adf9c-ff32-49f6-b8a8-312d950535a7.PNG)  
+ ![投影片2](https://user-images.githubusercontent.com/97165881/149563003-71ada36e-6890-46fe-995a-b0c151937c2a.PNG)  
 用另外一片瓦楞板，將4顆PIR sensor、RasbperryPi、breadboard都用熱溶膠貼在上面，並以杜邦線完成接線  
 ![投影片3](https://user-images.githubusercontent.com/97165881/148979321-838b8d64-c13b-4988-a437-929303ff7637.JPG) 
 這次選用的GPIO說明如下  
