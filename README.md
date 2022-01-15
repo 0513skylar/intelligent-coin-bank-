@@ -32,11 +32,13 @@
 實驗適當斜度後可以熱熔膠黏貼在瓦楞板上，並切割寶特瓶當錢幣容器  
  ![投影片2](https://user-images.githubusercontent.com/97165881/149563003-71ada36e-6890-46fe-995a-b0c151937c2a.PNG)  
 用另外一片瓦楞板，將4顆PIR sensor、RasbperryPi、breadboard都用熱溶膠貼在上面，並以杜邦線完成接線  
-![投影片3](https://user-images.githubusercontent.com/97165881/148979321-838b8d64-c13b-4988-a437-929303ff7637.JPG) 
+![投影片3](https://user-images.githubusercontent.com/97165881/149619505-662fd3ec-5ee2-48e6-9f24-947034285725.PNG)  
 這次選用的GPIO說明如下  
 ![投影片4](https://user-images.githubusercontent.com/97165881/148979383-3fd8a75c-64b9-4fac-9f56-41951cc8e28e.JPG)
+PIR sensor因為有感應的問題必須反覆實驗，可以在模組上面調整的部分如下圖介紹，也是我本次調整後的模式  
+![投影片5](https://user-images.githubusercontent.com/97165881/149619537-0d30a581-e3b7-4535-92b1-3be89d4ff8bd.PNG)  
 
-* 軟體
+* 軟體  
 在Rasbperry Pi 3安裝RasbperryPi os，安裝步驟可以參考以下網站  
 https://www.raspberrypi.org/documentation/computers/using_linux.html#creating-a-new-user  
 接下來就在terminal先安裝python的flask套件  
@@ -117,7 +119,8 @@ http://b65b-106-104-88-155.ngrok.io/coinbank
 這樣就大功告成啦!  
 
 # 實作影片
-希望奇蹟出現
+https://youtu.be/tT-3LyByazY
+
 # 參考資料
 https://www.youtube.com/watch?v=ItbHdrFvzlg  
 https://www.tinkercad.com/  
